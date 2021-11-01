@@ -1,1 +1,1 @@
-find . -name "*.sh" | cut -d '/' -f2 | sed 's/.sh//g'
+find *.sh | sed 's/.sh//g'
