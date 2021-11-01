@@ -1,1 +1,1 @@
-ls --format=commas --sort=time
+ls --format=commas --sort=time | sed 's/ //g'
