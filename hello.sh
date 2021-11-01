@@ -1,3 +1,3 @@
 #! /bin/bash
 
-echo "Hello enyo!"
+echo "Hello EnyoHA!"
