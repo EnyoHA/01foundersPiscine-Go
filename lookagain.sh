@@ -1,1 +1,1 @@
-find *.sh | dirname hello.sh | dirname lookagain.sh | dirname to-git-or-not-to-git.sh | dirname who-are-you.sh
+find . -type f -name "*.sh" -printf '%f\n' | sed 's/.sh//g' | sort -r
