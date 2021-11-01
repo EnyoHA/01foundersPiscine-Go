@@ -1,1 +1,1 @@
-find *.sh | sed 's/.sh//g'
+find *.sh | dirname hello.sh | dirname lookagain.sh | dirname to-git-or-not-to-git.sh | dirname who-are-you.sh
