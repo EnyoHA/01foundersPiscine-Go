@@ -31,4 +31,5 @@ func main() {
 	z01.PrintRune(rune(alphabet[23]))
 	z01.PrintRune(rune(alphabet[24]))
 	z01.PrintRune(rune(alphabet[25]))
+	z01.PrintRune(rune('\n'))
 }
