@@ -1,31 +1,23 @@
 package piscine
 
-import "reflect"
+// Write a function, BTreeApplyByLevel, that applies the function given by f, to each node of the tree given by root.
 
-func printOrderTraversal(root *TreeNode, niveau int, fn interface{})  {
-        if root == nil { 
-                return 
-        }
-        if niveau == 1 {
-		Invoke(fn, root.Data)
-        }else if niveau > 1 { 
-                printOrderTraversal(root.Left,niveau - 1, fn)
-                printOrderTraversal(root.Right,niveau - 1, fn)
-        }
+func BTreeApplyByLevel(root *TreeNode, f func(...interface{}) (int, error)) {
+	h := BTreeLevelCount(root)
+	for i := 0; i < h; i++ {
+		applyLevel(root, i, f)
+	}
 }
 
-func BTreeApplyByLevel(root *TreeNode, fn interface{}) {
-        h := BTreeLevelCount(root)
-        for i := 1; i <= h; i++ { 
-                printOrderTraversal(root, i,fn)
-        }
-}
+func applyLevel(root *TreeNode, level int, f func(...interface{}) (int, error)) {
+	if root == nil {
+		return
+	}
 
-func Invoke(fn interface{}, args ...string) {
-    v := reflect.ValueOf(fn)
-    rargs := make([]reflect.Value, len(args))
-    for i, a := range args {
-        rargs[i] = reflect.ValueOf(a)
-    }
-    v.Call(rargs)
+	if level == 0 {
+		f(root.Data)
+	} else if level > 0 {
+		applyLevel(root.Left, level-1, f)
+		applyLevel(root.Right, level-1, f)
+	}
 }
