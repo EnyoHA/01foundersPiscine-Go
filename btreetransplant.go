@@ -4,16 +4,16 @@ func BTreeTransplant(root, node, rplc *TreeNode) *TreeNode {
 	if root == nil {
 		return nil
 	}
+	if root.Left != nil && root.Left == node {
+		root.Left = rplc
+		root.Left.Parent = root
 
-	replacement := node
-	if node.Parent == nil {
-		root = rplc
-	} else if node == node.Parent.Left {
-		replacement.Parent.Left = rplc
+	} else if root.Right != nil && root.Right == node {
+		root.Right = rplc
+		root.Right.Parent = root
 	} else {
-		replacement.Parent.Right = rplc
+		root.Left = BTreeTransplant(root.Left, node, rplc)
+		root.Right = BTreeTransplant(root.Right, node, rplc)
 	}
-	replacement.Parent = node.Parent
-
 	return root
 }
